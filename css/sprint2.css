@@ -1,0 +1,49 @@
+@font-face {
+    font-family: lato-bold;
+    src: url('../fonts/Lato-Bold.ttf');
+}
+@font-face {
+    font-family: eurof35;
+    src: url('../fonts/eurof35.ttf');
+}
+* {
+    margin: 5px;
+}
+
+body{
+    margin: 0;
+}
+header {
+    font-size: 150px;
+    text-align: center;
+    background-color: blue;
+}
+/* 
+ #myCanvas {
+    position: relative;
+    left: 50%;
+    top: 50%; 
+}  */
+
+.flex {
+    display: flex;
+    height: 400px;
+    justify-content: center;
+}
+
+.line-num {
+    font-size: 25px;
+}
+
+button {
+    margin-right: 20px;
+    /* display: block; */
+}
+
+.btns1 {
+    margin-bottom: 20px;
+}
+ 
+.baby{
+    margin-right: 20px;
+}
