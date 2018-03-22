@@ -8,29 +8,31 @@ var inputFirstAlign = document.getElementById('first-align').value;
 var inputSecondAlign = document.getElementById('second-align').value;
 var inputFirstFont = document.getElementById('first-font').value;
 var inputSecondFont = document.getElementById('second-font').value;
-var inputFirstSize = document.getElementById('first-size').value;
-var inputSecondSize = document.getElementById('second-size').value;
+// var inputFirstSize = document.getElementById('first-size').value;
+// var inputSecondSize = document.getElementById('second-size').value;
 
 var gMeme = {
     txts: [
         {
             line: '',
-            size: inputFirstSize ,
+            size: 30,
             align: inputFirstAlign,
-            color: 'red',
+            color: '#ffffff',
             font: inputFirstFont,
-            posX: 200,
-            posY: 70
+            posX: 240,
+            posY: 85,
+            shadow: 'rgba(0, 0, 0, 0)'
         },
 
         {
             line: '',
-            size: inputSecondSize,
+            size: 30,
             align: inputSecondAlign,
-            color: 'red',
+            color: '#ffffff',
             font: inputSecondFont,
-            posX: 200,
-            posY: 400
+            posX: 240,
+            posY: 470,
+            shadow: 'rgba(0, 0, 0, 0)'
         }
     ]
 }
@@ -47,10 +49,13 @@ function drawImage() {
         context.drawImage(img, 0, 0, 500, 500);
         context.lineWidth = 10;
         gMeme.txts.forEach(function (txt, i) {
-            context.font = gMeme.txts[i].size +"px "+ gMeme.txts[i].font;
+            context.shadowBlur = 7;
+            context.shadowColor = txt.shadow;
+            context.font = gMeme.txts[i].size + "px " + gMeme.txts[i].font;
             context.textAlign = gMeme.txts[i].align;
             context.strokeText(gMeme.txts[i].line, gMeme.txts[i].posX, gMeme.txts[i].posY);
             context.fillStyle = gMeme.txts[i].color;
+            console.log('shadowColor:', context.shadowColor)
             context.fillText(gMeme.txts[i].line, gMeme.txts[i].posX, gMeme.txts[i].posY);
         })
     };
@@ -58,9 +63,12 @@ function drawImage() {
 
 
 
-function drawText() {
+function drawFirstText() {
     var inputTop = document.getElementById('top').value;
     gMeme.txts[0].line = inputTop;
+    drawImage();
+}
+function drawSecondText() {
     var inputBottom = document.getElementById('bottom').value;
     gMeme.txts[1].line = inputBottom;
     drawImage();
@@ -69,21 +77,90 @@ function drawText() {
 function alignText() {
     var inputFirstAlign = document.getElementById('first-align').value
     var inputSecondAlign = document.getElementById('second-align').value
-        gMeme.txts[0].align = inputFirstAlign;
-        gMeme.txts[1].align = inputSecondAlign;
+    gMeme.txts[0].align = inputFirstAlign;
+    gMeme.txts[1].align = inputSecondAlign;
     drawImage();
 }
 function changeFont() {
     var inputFirstFont = document.getElementById('first-font').value
     var inputSecondFont = document.getElementById('second-font').value
-        gMeme.txts[0].font = inputFirstFont;
-        gMeme.txts[1].font = inputSecondFont;
+    gMeme.txts[0].font = inputFirstFont;
+    gMeme.txts[1].font = inputSecondFont;
     drawImage();
 }
-function changeSize() {
+function changeFirstSize() {
     var inputFirstSize = document.getElementById('first-size').value
-    var inputSecondSize = document.getElementById('second-size').value
-        gMeme.txts[0].size = inputFirstSize;
-        gMeme.txts[1].size = inputSecondSize;
+    gMeme.txts[0].size = inputFirstSize;
     drawImage();
 }
+function changeSecondSize() {
+    var inputSecondSize = document.getElementById('second-size').value
+    gMeme.txts[1].size = inputSecondSize;
+    drawImage();
+}
+
+function changeFirstColor() {
+    var inputFirstColor = document.getElementById("myFirstColor").value;
+    gMeme.txts[0].color = inputFirstColor;
+    drawImage();
+}
+function changeSecondColor() {
+    var inputSecondColor = document.getElementById("mySecondColor").value;
+    gMeme.txts[1].color = inputSecondColor;
+    drawImage();
+}
+
+function addFirstShadow() {
+    var isChecked = document.getElementById("first-shadow").checked;
+    if (isChecked) {
+        gMeme.txts[0].shadow = 'black';
+    } else {
+        gMeme.txts[0].shadow = 'rgba(0, 0, 0, 0)';
+    };
+   drawImage();
+}
+function addSecondShadow() {
+    var isChecked = document.getElementById("second-shadow").checked;
+    if (isChecked) {
+        gMeme.txts[1].shadow = 'black';
+    } else {
+        gMeme.txts[1].shadow = 'rgba(0, 0, 0, 0)';
+    };
+   drawImage();
+}
+
+function moveUpFirst() {
+    gMeme.txts[0].posY -= 5;
+    drawImage();
+}
+function moveDownFirst() {
+    gMeme.txts[0].posY += 5;
+    drawImage();
+}
+function moveUpSecond() {
+    gMeme.txts[1].posY -= 5;
+    drawImage();
+}
+function moveDownSecond() {
+    gMeme.txts[1].posY += 5;
+    drawImage();
+}
+
+function firstClear() {
+    gMeme.txts[0].line= "";
+    drawImage();
+}
+function secondClear() {
+    gMeme.txts[1].line= "";
+    drawImage();
+}
+
+function downloadCanvas(elLink) {
+    // debugger
+    var canvas = document.getElementById('myCanvas');
+    console.log(canvas)
+    var dt = canvas.toDataURL('image/jpeg');
+    console.log(dt)
+    elLink.href = dt;
+};
+// downloadLnk.addEventListener('click', download, false);

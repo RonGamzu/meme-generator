@@ -1,3 +1,5 @@
+/* @import '../fonts/fontawesome-all.min.css'; */
+
 @font-face {
     font-family: lato-bold;
     src: url('../fonts/Lato-Bold.ttf');
@@ -6,17 +8,23 @@
     font-family: eurof35;
     src: url('../fonts/eurof35.ttf');
 }
+@font-face {
+    font-family: RammettoOne;
+    src: url('../fonts/RammettoOne-Regular.ttf');
+}
 * {
     margin: 5px;
 }
 
 body{
     margin: 0;
+    background-color: rgb(66, 160, 82)
 }
 header {
-    font-size: 150px;
+    font-size: 65px;
     text-align: center;
     background-color: blue;
+    font-family: RammettoOne;
 }
 /* 
  #myCanvas {

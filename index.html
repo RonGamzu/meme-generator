@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/sprint2.css">
     <title>MemeGenerator</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
+
 </head>
 
 <body onload="drawImage()">
@@ -15,13 +17,13 @@
         <canvas class="baby" id="myCanvas" width="500px" height="500px" style="border:1px solid #d3d3d3;"></canvas>
         <div class="functions">
             <label for="name" class="line-num">First line:</label>
-            <input type="text" id="top" name="str" required/>
-            <button class="send" onclick="drawText()">apply text</button>
+            <input type="text" id="top" name="str" oninput="drawFirstText()" required/>
+            <!-- <button class="send" onclick="drawFirstText()">apply text</button> -->
             <div class="btns1">
                 <label for="align">Align Text:</label>
                 <select id="first-align" onchange="alignText()">
-                    <option value="right">Left</option> 
                     <option value="center">Center</option>
+                    <option value="right">Left</option> 
                     <option value="left">Right</option>
                 </select>
                 <label for="align">Font:</label>
@@ -32,19 +34,29 @@
                 </select>
                 <div>
                     <label for="name">Font size:</label>
-                    <input type="number" id="first-size" name="quantity" min="30" max="100">
-                    <button class="send" onclick="changeSize()">apply size</button>
+                    <input type="number" id="first-size" name="quantity" min="30" max="100" oninput="changeFirstSize()">
+                    <!-- <button class="send" onclick="changeFirstSize()">apply size</button> -->
                 </div>
+                <label for="name">color:</label>
+                <input type="color" id="myFirstColor" onchange="changeFirstColor()">
+                <label for="name">text shadow<i class="fas fa-sun"></i></label>
+                <input type="checkbox" id="first-shadow" onclick="addFirstShadow()">
+                <button id="first-up" onclick="moveUpFirst()"><i class="fas fa-arrow-up"></i></button>
+                <button id="first-down" onclick="moveDownFirst()"><i class="fas fa-arrow-down"></i></button>
+                <button onclick="firstClear()"><i class="fas fa-trash-alt"></i></button>
+                <!-- <input type="submit" formnovalidate value="Save"> -->
             </div>
 
+            <hr>
+
             <label for="name" class="line-num">Second line:</label>
-            <input type="text" id="bottom" name="bottom-text">
-            <button class="send" onclick="drawText()">apply text</button>
+            <input type="text" id="bottom" oninput="drawSecondText()" name="bottom-text">
+            <!-- <button class="send" onclick="drawSecondText()">apply text</button> -->
             <div>
                 <label for="align">Align Text:</label>
                 <select id="second-align" onchange="alignText()">
-                    <option value="right">Left</option>
                     <option value="center">Center</option>
+                    <option value="right">Left</option>
                     <option value="left">Right</option>
                 </select>
                 <label for="align">Font:</label>
@@ -55,9 +67,19 @@
                 </select>
                 <div>
                     <label for="name">Font size:</label>
-                    <input type="number" id="second-size" name="quantity" min="30" max="100">
-                    <button class="send" onclick="changeSize()">apply size</button>
+                    <input type="number" id="second-size" name="quantity" min="30" max="100" oninput="changeSecondSize()">
+                    <!-- <button class="send" onclick="changeSecondSize()">apply size</button> -->
                 </div>
+                <label for="name">color:</label>
+                <input type="color" id="mySecondColor" onchange="changeSecondColor()">
+                <label for="name">text shadow<i class="fas fa-sun"></i></label>
+                <input type="checkbox" id="second-shadow" onchange="addSecondShadow()">
+                <button id="second-up" onclick="moveUpSecond()"><i class="fas fa-arrow-up"></i></button>
+                <button id="second-down" onclick="moveDownSecond()"><i class="fas fa-arrow-down"></i></button>
+                <button onclick="secondClear()"><i class="fas fa-trash-alt"></i></button>
+                <!-- <input type="submit" formnovalidate value="Save" > -->
+                <button><a id="downloadLnk" download="YourFileName.jpg" onclick=" downloadCanvas(this)">Download as image</a>
+                </button>
             </div>
         </div>
     </div>
