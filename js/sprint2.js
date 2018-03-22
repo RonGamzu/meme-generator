@@ -1,5 +1,5 @@
 // console.log("sdafasv");
-
+console.log('meme')
 var inputTop = document.getElementById('top').value;
 var inputBottom = document.getElementById('bottom').value;
 var inputFirstAlign = document.getElementById('first-align').value;
